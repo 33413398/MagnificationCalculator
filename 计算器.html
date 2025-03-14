@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>投注计算器</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 10px;
+                box-sizing: border-box;
+            }
+            input,
+            button {
+                padding: 10px;
+                margin: 5px;
+            }
+            input {
+                width: 66vw;
+            }
+            .result-box {
+                width: 90vw;
+                border: 1px dashed #ccc;
+                padding: 10px;
+                /* text-align: center; */
+                box-sizing: border-box;
+                font-size: 14px;
+                /* line-height: 35px; */
+            }
+        </style>
+    </head>
+    <body>
+        <h3>倍率计算器</h3>
+        <label for="inputValue">输入一个底数：</label>
+        <br />
+        <input type="number" id="inputValue" placeholder="例如：20" />
+        <button onclick="calculate()">计算</button>
+        <h4>结果：</h4>
+        <div id="result" class="result-box"></div>
+
+        <script>
+            function calculate() {
+                const inputValue = parseFloat(document.getElementById("inputValue").value)
+                const fibonacciMultipliers = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
+                let results = []
+
+                if (!isNaN(inputValue)) {
+                    for (let i = 0; i < fibonacciMultipliers.length; i++) {
+                        const ele = fibonacciMultipliers[i]
+                        results.push(`第${i + 1}期,基数的${ele}倍：` + inputValue * fibonacciMultipliers[i])
+                    }
+                    document.getElementById("result").innerText = results.join("\n")
+                } else {
+                    document.getElementById("result").innerText = "请输入有效的数字。"
+                }
+            }
+        </script>
+    </body>
+</html>
