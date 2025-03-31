@@ -34,6 +34,7 @@
         <label for="inputValue">输入一个底数：</label>
         <br />
         <input type="number" id="inputValue" placeholder="例如：20" />
+        <br />
         <button onclick="calculate()">计算</button>
         <h4>结果：</h4>
         <div id="result" class="result-box"></div>
@@ -41,49 +42,15 @@
         <script>
             function calculate() {
                 const inputValue = parseFloat(document.getElementById("inputValue").value)
-                const fibonacciMultipliers = [
-                    1,
-                    2,
-                    3,
-                    5,
-                    8,
-                    13,
-                    21,
-                    34,
-                    55,
-                    89,
-                    144,
-                    233,
-                    "377",
-                    "610",
-                    "987",
-                    "1597",
-                    "2584",
-                    "4181",
-                    "6765",
-                    "10946",
-                    "17711",
-                    "28657",
-                    "46368",
-                    "75025",
-                    "121393",
-                    "196418",
-                    "317811",
-                    "514229",
-                    "832040",
-                    "1346269",
-                    "2178309",
-                    "3524578",
-                    "5702887",
-                    "9227465",
-                    "14930352",
-                ]
+                const fibonacciMultipliers = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, "377", "610", "987", "1597", "2584", "4181", "6765", "10946", "17711", "28657"]
                 let results = []
 
                 if (!isNaN(inputValue)) {
                     for (let i = 0; i < fibonacciMultipliers.length; i++) {
                         const ele = fibonacciMultipliers[i] - 0
-                        results.push(`第${i + 1}期,基数的${ele}倍：` + inputValue * fibonacciMultipliers[i])
+                        const sum = inputValue * fibonacciMultipliers[i]
+
+                        results.push(`第${i + 1}期,基数的${ele}倍：${sum}，连黑保本金额：${Math.floor(sum / 3)}`)
                     }
                     document.getElementById("result").innerText = results.join("\n")
                 } else {
